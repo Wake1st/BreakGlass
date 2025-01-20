@@ -65,7 +65,7 @@ fn spawn_player(
         Name::new("Player"),
         Player,
         Sprite {
-            image: player_assets.ducky.clone(),
+            image: player_assets.hopper.clone(),
             texture_atlas: Some(TextureAtlas {
                 layout: texture_atlas_layout.clone(),
                 index: player_animation.get_atlas_index(),
@@ -118,36 +118,28 @@ pub struct PlayerAssets {
     // This #[dependency] attribute marks the field as a dependency of the Asset.
     // This means that it will not finish loading until the labeled asset is also loaded.
     #[dependency]
-    pub ducky: Handle<Image>,
+    pub hopper: Handle<Image>,
     #[dependency]
-    pub steps: Vec<Handle<AudioSource>>,
+    pub flaps: Vec<Handle<AudioSource>>,
 }
 
 impl PlayerAssets {
-    pub const PATH_DUCKY: &'static str = "images/ducky.png";
-    pub const PATH_STEP_1: &'static str = "audio/sound_effects/step1.ogg";
-    pub const PATH_STEP_2: &'static str = "audio/sound_effects/step2.ogg";
-    pub const PATH_STEP_3: &'static str = "audio/sound_effects/step3.ogg";
-    pub const PATH_STEP_4: &'static str = "audio/sound_effects/step4.ogg";
+    pub const PATH_HOPPER: &'static str = "images/hopper.png";
+    pub const PATH_FLAPPING: &'static str = "audio/sound_effects/flapping.wav";
 }
 
 impl FromWorld for PlayerAssets {
     fn from_world(world: &mut World) -> Self {
         let assets = world.resource::<AssetServer>();
         Self {
-            ducky: assets.load_with_settings(
-                PlayerAssets::PATH_DUCKY,
+            hopper: assets.load_with_settings(
+                PlayerAssets::PATH_HOPPER,
                 |settings: &mut ImageLoaderSettings| {
                     // Use `nearest` image sampling to preserve the pixel art style.
                     settings.sampler = ImageSampler::nearest();
                 },
             ),
-            steps: vec![
-                assets.load(PlayerAssets::PATH_STEP_1),
-                assets.load(PlayerAssets::PATH_STEP_2),
-                assets.load(PlayerAssets::PATH_STEP_3),
-                assets.load(PlayerAssets::PATH_STEP_4),
-            ],
+            flaps: vec![assets.load(PlayerAssets::PATH_FLAPPING)],
         }
     }
 }
