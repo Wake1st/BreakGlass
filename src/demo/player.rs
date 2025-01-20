@@ -65,7 +65,7 @@ fn spawn_player(
         Name::new("Player"),
         Player,
         Sprite {
-            image: player_assets.ducky.clone(),
+            image: player_assets.hopper.clone(),
             texture_atlas: Some(TextureAtlas {
                 layout: texture_atlas_layout.clone(),
                 index: player_animation.get_atlas_index(),
@@ -139,9 +139,7 @@ impl FromWorld for PlayerAssets {
                     settings.sampler = ImageSampler::nearest();
                 },
             ),
-            flaps: vec![
-                assets.load(PlayerAssets::PATH_FLAPPING),
-            ],
+            flaps: vec![assets.load(PlayerAssets::PATH_FLAPPING)],
         }
     }
 }

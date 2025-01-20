@@ -5,7 +5,6 @@
 //! - [Timers](https://github.com/bevyengine/bevy/blob/latest/examples/time/timers.rs)
 
 use bevy::prelude::*;
-use rand::prelude::*;
 use std::time::Duration;
 
 use crate::{
@@ -79,12 +78,11 @@ fn trigger_step_sound_effect(
     mut step_query: Query<&PlayerAnimation>,
 ) {
     for animation in &mut step_query {
-        if animation.state == PlayerAnimationState::Flying
-            && animation.changed()
+        if animation.state == PlayerAnimationState::Flying && animation.changed()
         {
-            let random_step = player_assets.flaps.unwrap();
+            let flap = player_assets.flaps[0];
             commands.spawn((
-                AudioPlayer(random_step.clone()),
+                AudioPlayer(flap),
                 PlaybackSettings::DESPAWN,
                 SoundEffect,
             ));
