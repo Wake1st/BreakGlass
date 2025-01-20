@@ -1,95 +1,20 @@
-# Bevy New 2D
+# Break Glass
 
-This template is a great way to get started on a new 2D [Bevy](https://bevyengine.org/) game!
-Start with a [basic project structure](#write-your-game) and [CI / CD](#release-your-game) that can deploy to [itch.io](https://itch.io).
-You can [try this template in your web browser!](https://the-bevy-flock.itch.io/bevy-new-2d)
+Navigate the character through glass mazes by launching and landing onto and through glass pannels. Getting to the end progresses to the next level; the number of pannels broken will decide the score, but watch out - every time you land on a pannel you risk breaking it!
 
-[@ChristopherBiscardi](https://github.com/ChristopherBiscardi) made a video on how to use this template from start to finish:
+## User Story
+- [ ] user should be able to "launch" the player with "aim" and "magnitude".
+- [ ] user should be able to use "head" to "break" a pannel.
+- [ ] user should be able to land on a pannel.
+  - [ ] user risks breaking pannels when landing on them, based on velocity.
+  - [ ] pannels have durability rating which decreases with every landing.
+- [ ] user should be able to navigate their way to the end of a level.
+- [ ] user's score should increase by breaking pannels.
+- [ ] user's score should descrease with time.
+- [ ] user must restart the level if they fall.
 
-[<img src="./docs/img/thumbnail.png" width=40% height=40% alt="A video tutorial for bevy_new_2d, formerly known as bevy_quickstart"/>](https://www.youtube.com/watch?v=ESBRyXClaYc)
-
-## Prerequisites
-
-We assume that you know how to use Bevy already and have seen the [official Quick Start Guide](https://bevyengine.org/learn/quick-start/introduction/).
-
-If you're new to Bevy, the patterns used in this template may look a bit weird at first glance.
-See our [Design Document](./docs/design.md) for more information on how we structured the code and why.
-
-## Create a new game
-
-Install [`cargo-generate`](https://github.com/cargo-generate/cargo-generate) and run the following command:
-
-```sh
-cargo generate thebevyflock/bevy_new_2d
-```
-
-Then [create a GitHub repository](https://github.com/new) and push your local repository to it.
-
-## Write your game
-
-The best way to get started is to play around with what you find in [`src/demo/`](./src/demo).
-
-This template comes with a basic project structure that you may find useful:
-
-| Path                                               | Description                                                        |
-| -------------------------------------------------- | ------------------------------------------------------------------ |
-| [`src/lib.rs`](./src/lib.rs)                       | App setup                                                          |
-| [`src/asset_tracking.rs`](./src/asset_tracking.rs) | A high-level way to load collections of asset handles as resources |
-| [`src/audio/`](./src/audio)                        | Marker components for sound effects and music                      |
-| [`src/demo/`](./src/demo)                          | Example game mechanics & content (replace with your own code)      |
-| [`src/dev_tools.rs`](./src/dev_tools.rs)           | Dev tools for dev builds (press \` aka backtick to toggle)         |
-| [`src/screens/`](./src/screens)                    | Splash screen, title screen, gameplay screen, etc.                 |
-| [`src/theme/`](./src/theme)                        | Reusable UI widgets & theming                                      |
-
-Feel free to move things around however you want, though.
-
-> [!Tip]
-> Be sure to check out the [3rd-party tools](./docs/tooling.md) we recommend!
-
-## Run your game
-
-Running your game locally is very simple:
-
-- Use `cargo run` to run a native dev build.
-- Use [`trunk serve`](https://trunkrs.dev/) to run a web dev build.
-
-If you're using [VS Code](https://code.visualstudio.com/), this template comes with a [`.vscode/tasks.json`](./.vscode/tasks.json) file.
-
-<details>
-  <summary>Run release builds</summary>
-
-- Use `cargo run --profile release-native --no-default-features` to run a native release build.
-- Use `trunk serve --release --no-default-features` to run a web release build.
-
-</details>
-
-<details>
-  <summary>Linux dependencies</summary>
-
-If you are using Linux, make sure you take a look at Bevy's [Linux dependencies](https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md).
-Note that this template enables Wayland support, which requires additional dependencies as detailed in the link above.
-Wayland is activated by using the `bevy/wayland` feature in the [`Cargo.toml`](./Cargo.toml).
-
-</details>
-
-<details>
-    <summary>(Optional) Improve your compile times</summary>
-
-[`.cargo/config_fast_builds.toml`](./.cargo/config_fast_builds.toml) contains documentation on how to set up your environment to improve compile times.
-After you've fiddled with it, rename it to `.cargo/config.toml` to enable it.
-
-</details>
-
-## Release your game
-
-This template uses [GitHub workflows](https://docs.github.com/en/actions/using-workflows) to run tests and build releases.
-See [Workflows](./docs/workflows.md) for more information.
-
-## Known Issues
-
-There are some known issues in Bevy that require some arcane workarounds.
-To keep this template simple, we have opted not to include those workarounds.
-You can read about them in the [Known Issues](./docs/known-issues.md) document.
+### Stretch
+- [ ] user can select their player name from a series of pre-recorded names (e.g. "draggon", "alpha", "silver").
 
 ## License
 
@@ -103,4 +28,4 @@ The CC0 license explicitly does not waive patent rights, but we confirm that we 
 
 ## Credits
 
-The [assets](./assets) in this repository are all 3rd-party. See the [credits screen](./src/screens/credits.rs) for more information.
+This games was made using the [bevy new 2D](https://the-bevy-flock.itch.io/bevy-new-2d) template - check it out!
