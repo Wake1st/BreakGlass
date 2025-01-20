@@ -78,14 +78,9 @@ fn trigger_step_sound_effect(
     mut step_query: Query<&PlayerAnimation>,
 ) {
     for animation in &mut step_query {
-        if animation.state == PlayerAnimationState::Flying && animation.changed()
-        {
+        if animation.state == PlayerAnimationState::Flying && animation.changed() {
             let flap = player_assets.flaps[0];
-            commands.spawn((
-                AudioPlayer(flap),
-                PlaybackSettings::DESPAWN,
-                SoundEffect,
-            ));
+            commands.spawn((AudioPlayer(flap),PlaybackSettings::DESPAWN,SoundEffect));
         }
     }
 }
