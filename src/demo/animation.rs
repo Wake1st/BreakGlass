@@ -81,7 +81,6 @@ fn trigger_step_sound_effect(
     for animation in &mut step_query {
         if animation.state == PlayerAnimationState::Flying
             && animation.changed()
-            && (animation.frame == 2 || animation.frame == 5)
         {
             let rng = &mut rand::thread_rng();
             let random_step = player_assets.steps.choose(rng).unwrap();
@@ -114,9 +113,9 @@ impl PlayerAnimation {
     /// The number of idle frames.
     const IDLE_FRAMES: usize = 2;
     /// The duration of each idle frame.
-    const IDLE_INTERVAL: Duration = Duration::from_millis(500);
+    const IDLE_INTERVAL: Duration = Duration::from_millis(600);
     /// The number of flying frames.
-    const FLYING_FRAMES: usize = 6;
+    const FLYING_FRAMES: usize = 4;
     /// The duration of each flying frame.
     const FLYING_INTERVAL: Duration = Duration::from_millis(50);
 
@@ -172,7 +171,7 @@ impl PlayerAnimation {
     pub fn get_atlas_index(&self) -> usize {
         match self.state {
             PlayerAnimationState::Idling => self.frame,
-            PlayerAnimationState::Flying => 6 + self.frame,
+            PlayerAnimationState::Flying => 4 + self.frame,
         }
     }
 }
