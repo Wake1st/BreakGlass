@@ -120,15 +120,12 @@ pub struct PlayerAssets {
     #[dependency]
     pub hopper: Handle<Image>,
     #[dependency]
-    pub steps: Vec<Handle<AudioSource>>,
+    pub flaps: Vec<Handle<AudioSource>>,
 }
 
 impl PlayerAssets {
     pub const PATH_HOPPER: &'static str = "images/hopper.png";
-    pub const PATH_STEP_1: &'static str = "audio/sound_effects/step1.ogg";
-    pub const PATH_STEP_2: &'static str = "audio/sound_effects/step2.ogg";
-    pub const PATH_STEP_3: &'static str = "audio/sound_effects/step3.ogg";
-    pub const PATH_STEP_4: &'static str = "audio/sound_effects/step4.ogg";
+    pub const PATH_FLAPPING: &'static str = "audio/sound_effects/flapping.wav";
 }
 
 impl FromWorld for PlayerAssets {
@@ -142,11 +139,8 @@ impl FromWorld for PlayerAssets {
                     settings.sampler = ImageSampler::nearest();
                 },
             ),
-            steps: vec![
-                assets.load(PlayerAssets::PATH_STEP_1),
-                assets.load(PlayerAssets::PATH_STEP_2),
-                assets.load(PlayerAssets::PATH_STEP_3),
-                assets.load(PlayerAssets::PATH_STEP_4),
+            flaps: vec![
+                assets.load(PlayerAssets::PATH_FLAPPING),
             ],
         }
     }

@@ -82,8 +82,7 @@ fn trigger_step_sound_effect(
         if animation.state == PlayerAnimationState::Flying
             && animation.changed()
         {
-            let rng = &mut rand::thread_rng();
-            let random_step = player_assets.steps.choose(rng).unwrap();
+            let random_step = player_assets.flaps.unwrap();
             commands.spawn((
                 AudioPlayer(random_step.clone()),
                 PlaybackSettings::DESPAWN,
