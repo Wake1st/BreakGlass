@@ -79,7 +79,7 @@ fn trigger_step_sound_effect(
 ) {
     for animation in &mut step_query {
         if animation.state == PlayerAnimationState::Flying && animation.changed() {
-            let flap = player_assets.flaps[0];
+            let flap = player_assets.flaps[0].clone();
             commands.spawn((AudioPlayer(flap), PlaybackSettings::DESPAWN, SoundEffect));
         }
     }
