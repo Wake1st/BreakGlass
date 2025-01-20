@@ -33,7 +33,7 @@ pub(super) fn plugin(app: &mut App) {
     );
 }
 
-/// Update the sprite direction and animation state (idling/walking).
+/// Update the sprite direction and animation state (idling/flying).
 fn update_animation_movement(
     mut player_query: Query<(&MovementController, &mut Sprite, &mut PlayerAnimation)>,
 ) {
@@ -46,7 +46,7 @@ fn update_animation_movement(
         let animation_state = if controller.intent == Vec2::ZERO {
             PlayerAnimationState::Idling
         } else {
-            PlayerAnimationState::Walking
+            PlayerAnimationState::Flying
         };
         animation.update_state(animation_state);
     }
@@ -79,7 +79,7 @@ fn trigger_step_sound_effect(
     mut step_query: Query<&PlayerAnimation>,
 ) {
     for animation in &mut step_query {
-        if animation.state == PlayerAnimationState::Walking
+        if animation.state == PlayerAnimationState::Flying
             && animation.changed()
             && (animation.frame == 2 || animation.frame == 5)
         {
@@ -107,7 +107,7 @@ pub struct PlayerAnimation {
 #[derive(Reflect, PartialEq)]
 pub enum PlayerAnimationState {
     Idling,
-    Walking,
+    Flying,
 }
 
 impl PlayerAnimation {
@@ -115,10 +115,10 @@ impl PlayerAnimation {
     const IDLE_FRAMES: usize = 2;
     /// The duration of each idle frame.
     const IDLE_INTERVAL: Duration = Duration::from_millis(500);
-    /// The number of walking frames.
-    const WALKING_FRAMES: usize = 6;
-    /// The duration of each walking frame.
-    const WALKING_INTERVAL: Duration = Duration::from_millis(50);
+    /// The number of flying frames.
+    const FLYING_FRAMES: usize = 6;
+    /// The duration of each flying frame.
+    const FLYING_INTERVAL: Duration = Duration::from_millis(50);
 
     fn idling() -> Self {
         Self {
@@ -128,11 +128,11 @@ impl PlayerAnimation {
         }
     }
 
-    fn walking() -> Self {
+    fn flying() -> Self {
         Self {
-            timer: Timer::new(Self::WALKING_INTERVAL, TimerMode::Repeating),
+            timer: Timer::new(Self::FLYING_INTERVAL, TimerMode::Repeating),
             frame: 0,
-            state: PlayerAnimationState::Walking,
+            state: PlayerAnimationState::Flying,
         }
     }
 
@@ -149,7 +149,7 @@ impl PlayerAnimation {
         self.frame = (self.frame + 1)
             % match self.state {
                 PlayerAnimationState::Idling => Self::IDLE_FRAMES,
-                PlayerAnimationState::Walking => Self::WALKING_FRAMES,
+                PlayerAnimationState::Flying => Self::FLYING_FRAMES,
             };
     }
 
@@ -158,7 +158,7 @@ impl PlayerAnimation {
         if self.state != state {
             match state {
                 PlayerAnimationState::Idling => *self = Self::idling(),
-                PlayerAnimationState::Walking => *self = Self::walking(),
+                PlayerAnimationState::Flying => *self = Self::flying(),
             }
         }
     }
@@ -172,7 +172,7 @@ impl PlayerAnimation {
     pub fn get_atlas_index(&self) -> usize {
         match self.state {
             PlayerAnimationState::Idling => self.frame,
-            PlayerAnimationState::Walking => 6 + self.frame,
+            PlayerAnimationState::Flying => 6 + self.frame,
         }
     }
 }
