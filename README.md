@@ -29,3 +29,7 @@ The CC0 license explicitly does not waive patent rights, but we confirm that we 
 ## Credits
 
 This games was made using the [bevy new 2D](https://the-bevy-flock.itch.io/bevy-new-2d) template - check it out!
+
+### Tools
+Beep Box - <https://www.beepbox.co>
+Free Convert - <https://www.freeconvert.com> 

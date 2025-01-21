@@ -125,7 +125,7 @@ pub struct PlayerAssets {
 
 impl PlayerAssets {
     pub const PATH_HOPPER: &'static str = "images/hopper.png";
-    pub const PATH_FLAPPING: &'static str = "audio/sound_effects/flapping.wav";
+    pub const PATH_FLAPPING: &'static str = "audio/sound_effects/flapping.ogg";
 }
 
 impl FromWorld for PlayerAssets {
