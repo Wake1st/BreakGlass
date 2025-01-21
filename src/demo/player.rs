@@ -7,6 +7,7 @@ use bevy::{
     image::{ImageLoaderSettings, ImageSampler},
     prelude::*,
 };
+use bevy_rapier2d::prelude::{Collider, KinematicCharacterController};
 
 use crate::{
     asset_tracking::LoadResource,
@@ -77,6 +78,8 @@ fn spawn_player(
             max_speed: config.max_speed,
             ..default()
         },
+        Collider::ball(0.5),
+        KinematicCharacterController::default(),
         ScreenWrap,
         player_animation,
         StateScoped(Screen::Gameplay),
