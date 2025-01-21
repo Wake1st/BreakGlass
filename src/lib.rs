@@ -11,6 +11,7 @@ use bevy::{
     audio::{AudioPlugin, Volume},
     prelude::*,
 };
+use bevy_rapier2d::{plugin::{NoUserData, RapierPhysicsPlugin}, render::RapierDebugRenderPlugin};
 
 pub struct AppPlugin;
 
@@ -52,6 +53,8 @@ impl Plugin for AppPlugin {
                     },
                     ..default()
                 }),
+            ).add_plugins(RapierPhysicsPlugin::<NoUserData>::pixels_per_meter(100.0))
+            .add_plugins(RapierDebugRenderPlugin::default()
         );
 
         // Add other plugins.
