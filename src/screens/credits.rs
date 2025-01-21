@@ -24,6 +24,10 @@ fn spawn_credits_screen(mut commands: Commands) {
             children.label("Bevy logo - All rights reserved by the Bevy Foundation. Permission granted for splash screen use when unmodified.");
             children.label("Button SFX - CC0 by Jaszunio15");
 
+            children.header("Tools");
+            children.label("Free Convert - <https://www.beepbox.co>");
+            children.label("Free Convert - <https://www.freeconvert.com>");
+
             children.button("Back").observe(enter_title_screen);
         });
 }
