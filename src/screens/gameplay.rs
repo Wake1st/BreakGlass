@@ -36,7 +36,7 @@ impl FromWorld for GameplayMusic {
     fn from_world(world: &mut World) -> Self {
         let assets = world.resource::<AssetServer>();
         Self {
-            handle: assets.load("audio/music/BreakGlass-Level.mp3"),
+            handle: assets.load("audio/music/BreakGlass-Level.ogg"),
             entity: None,
         }
     }
